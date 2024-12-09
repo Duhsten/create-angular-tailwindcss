@@ -1,0 +1,22 @@
+{
+  "name": "create-angular-tailwindcss-project",
+  "version": "1.0.3",
+  "description": "A script to create a new Angular project with Tailwind CSS setup",
+  "bin": {
+    "create-angular-tailwindcss-project": "index.js"
+  },
+  "keywords": [
+    "angular",
+    "tailwindcss",
+    "scaffold",
+    "cli"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "child_process": "^1.0.2",
+    "cross-spawn": "^7.0.6",
+    "ora": "^8.1.1"
+  }
+}
