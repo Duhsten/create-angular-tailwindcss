@@ -1,9 +1,9 @@
 {
-  "name": "create-angular-tailwindcss-project",
-  "version": "2.0.0",
+  "name": "create-angular-tailwindcss",
+  "version": "1.0.0",
   "description": "A script to create a new Angular project with Tailwind CSS setup",
   "bin": {
-    "create-angular-tailwindcss-project": "index.js"
+    "create-angular-tailwindcss": "index.js"
   },
   "keywords": [
     "angular",
@@ -17,6 +17,7 @@
     "type": "git",
     "url": "https://github.com/Duhsten/create-tailwindcss-angular.git"
   },
+  "homepage": "https://github.com/serverless/serverless#readme",
   "type": "module",
   "license": "MIT",
   "dependencies": {
