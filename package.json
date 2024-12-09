@@ -12,6 +12,7 @@
     "cli"
   ],
   "readme": "README.md",
+  "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/Duhsten/create-tailwindcss-angular.git"
