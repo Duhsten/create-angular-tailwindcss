@@ -11,6 +11,11 @@
     "scaffold",
     "cli"
   ],
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Duhsten/create-tailwindcss-angular.git"
+  },
   "type": "module",
   "license": "MIT",
   "dependencies": {
