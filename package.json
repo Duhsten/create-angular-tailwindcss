@@ -1,6 +1,6 @@
 {
   "name": "create-angular-tailwindcss-project",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A script to create a new Angular project with Tailwind CSS setup",
   "bin": {
     "create-angular-tailwindcss-project": "index.js"
