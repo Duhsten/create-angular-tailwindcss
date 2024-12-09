@@ -117,7 +117,7 @@ async function main() {
 
     rl.close();
     console.log(chalk.greenBright.bold('\n🎉 Project setup complete! Happy coding! 🚀\n'));
-    console.log(chalk.greenBright.bold(`\nRun:\n\t🚀 cd ${projectName}\n\t🚀 ng serve\n`));
+    console.log(chalk.greenBright.bold(`\nRun:\n\tcd ${projectName}\n\tng serve\n`));
   } catch (error) {
     errorMessage(`Something went wrong: ${error.message}`);
     rl.close();
