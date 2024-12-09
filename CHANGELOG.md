@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/Duhsten/create-tailwindcss-angular/compare/v2.0.0...v2.0.1) (2024-12-09)
+
+
+### Bug Fixes
+
+* fixed random emojis in prompt ([9d6bb8e](https://github.com/Duhsten/create-tailwindcss-angular/commit/9d6bb8e32525507d24cc5b0fe107411d4421d1be))
+
 ## [2.0.0](https://github.com/Duhsten/create-tailwindcss-angular/compare/v1.0.6...v2.0.0) (2024-12-09)
 
 
