@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Duhsten/create-tailwindcss-angular/compare/v1.0.0...v1.0.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* fixed typo in package.json ([6efe832](https://github.com/Duhsten/create-tailwindcss-angular/commit/6efe832622a6bb224c2777d99af6d5436d6d65d8))
+
 ## [1.0.0](https://github.com/Duhsten/create-tailwindcss-angular/compare/v2.0.1...v1.0.0) (2024-12-10)
 
 

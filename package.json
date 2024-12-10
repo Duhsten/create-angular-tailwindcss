@@ -1,6 +1,6 @@
 {
   "name": "create-angular-tailwindcss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This CLI tool helps you create a new Angular project with TailwindCSS seamlessly set up, so you can focus on building amazing apps without manual configuration.",
   "bin": {
     "create-angular-tailwindcss": "index.js"
