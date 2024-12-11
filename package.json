@@ -15,9 +15,9 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Duhsten/create-tailwindcss-angular.git"
+    "url": "https://github.com/Duhsten/create-angular-tailwindcss.git"
   },
-  "homepage": "https://github.com/serverless/serverless#readme",
+  "homepage": "https://github.com/Duhsten/create-angular-tailwindcss#readme",
   "type": "module",
   "license": "MIT",
   "dependencies": {
