@@ -8,6 +8,12 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
+import gradient from 'gradient-string';
+
+// Move these constants to the top of the file, right after the imports
+const ANGULAR_COLORS = ['#DD0031', '#C3002F', '#B4002D']; // Angular reds
+const TAILWIND_COLORS = ['#38BDF8', '#0EA5E9', '#0369A1']; // Tailwind blues
+const SYSTEM_COLORS = ['#00C853', '#2196F3', '#3D5AFE']; // Green to Blue gradient for system messages
 
 // Get the current directory (needed for ES Module compatibility)
 const __filename = fileURLToPath(import.meta.url);
@@ -25,15 +31,15 @@ function prompt(question) {
 }
 
 function logStep(step) {
-  console.log(`${chalk.cyanBright.bold('➤')} ${chalk.whiteBright(step)}`);
+  console.log(`${gradient(ANGULAR_COLORS)('➤')} ${chalk.whiteBright(step)}`);
 }
 
 function successMessage(message) {
-  console.log(`${chalk.greenBright.bold('✔')} ${chalk.whiteBright(message)}`);
+  console.log(`${gradient(TAILWIND_COLORS)('✔')} ${chalk.whiteBright(message)}`);
 }
 
 function errorMessage(message) {
-  console.error(`${chalk.redBright.bold('✖')} ${chalk.whiteBright(message)}`);
+  console.error(`${gradient(ANGULAR_COLORS)('✖')} ${chalk.whiteBright(message)}`);
 }
 
 // Function to get the latest version of a package
@@ -45,12 +51,28 @@ function getLatestVersion(packageName) {
   }
 }
 
-async function createAngularProject(projectName) {
-  logStep(`Creating Angular project: ${projectName}`);
+// Add this helper function after getLatestVersion
+async function promptForVersion(latestVersion, packageName) {
+  const useLatest = await prompt(
+    gradient(SYSTEM_COLORS)(`Use latest ${packageName} (${latestVersion})? [Y/n] `)
+  );
+  
+  if (useLatest.toLowerCase() === 'n') {
+    const version = await prompt(
+      gradient(SYSTEM_COLORS)(`Enter desired ${packageName} version: `)
+    );
+    return version.trim();
+  }
+  return latestVersion;
+}
+
+// Update the createAngularProject function to accept a version
+async function createAngularProject(projectName, angularVersion) {
+  logStep(`Creating Angular project: ${projectName} with Angular CLI v${angularVersion}`);
   const spinner = ora(chalk.blueBright('Generating Angular project...')).start();
 
   try {
-    execSync(`npx @angular/cli new ${projectName}`, { stdio: 'inherit' });
+    execSync(`npx @angular/cli@${angularVersion} new ${projectName}`, { stdio: 'inherit' });
     spinner.succeed('Angular project created successfully!');
   } catch (error) {
     spinner.fail('Angular project creation failed.');
@@ -58,14 +80,14 @@ async function createAngularProject(projectName) {
   }
 }
 
-async function installTailwind(projectName) {
+async function installTailwind(projectName, tailwindVersion) {
   process.chdir(projectName);
 
   logStep('Installing Tailwind CSS and dependencies');
   const tailwindSpinner = ora(chalk.blueBright('Installing Tailwind CSS...')).start();
 
   try {
-    execSync('npm install -D tailwindcss postcss autoprefixer', { stdio: 'inherit' });
+    execSync(`npm install -D tailwindcss@${tailwindVersion} postcss autoprefixer`, { stdio: 'inherit' });
     tailwindSpinner.succeed('Tailwind CSS installed successfully!');
   } catch (error) {
     tailwindSpinner.fail('Tailwind CSS installation failed.');
@@ -99,25 +121,37 @@ async function installTailwind(projectName) {
   successMessage('app.component.html updated with the TailwindCSS starter template!');
 }
 
+// Update the main function
 async function main() {
-  console.log(chalk.magentaBright.bold('\n🚀 Angular + Tailwind CSS Project Creator 🚀\n'));
-
-  // Get the latest versions of Angular CLI and TailwindCSS
-  const angularVersion = getLatestVersion('@angular/cli');
-  const tailwindVersion = getLatestVersion('tailwindcss');
-
-  console.log(chalk.cyanBright(`🔹 Using Angular CLI version: ${chalk.whiteBright.bold(angularVersion)}`));
-  console.log(chalk.cyanBright(`🔹 Using TailwindCSS version: ${chalk.whiteBright.bold(tailwindVersion)}\n`));
+  // Get the latest versions
+  const latestAngularVersion = getLatestVersion('@angular/cli');
+  const latestTailwindVersion = getLatestVersion('tailwindcss');
 
   try {
-    const projectName = await prompt(chalk.yellowBright('Enter the name of your new Angular project: '));
+    // First ask for project name
+    const projectName = await prompt(
+      gradient(ANGULAR_COLORS)('Angular') + 
+      chalk.white(' + ') + 
+      gradient(TAILWIND_COLORS)('TailwindCSS') + 
+      gradient.cristal(' Project Creator: ') + 
+      chalk.white('project name? ')
+    );
 
-    await createAngularProject(projectName);
-    await installTailwind(projectName);
+    // Then ask about versions
+    const angularVersion = await promptForVersion(latestAngularVersion, 'Angular CLI');
+    const tailwindVersion = await promptForVersion(latestTailwindVersion, 'TailwindCSS');
+
+    // Show selected configuration
+    console.log('\n' + gradient(SYSTEM_COLORS)('Project Configuration:'));
+    console.log(gradient(ANGULAR_COLORS)(`➤ Angular CLI: v${angularVersion}`));
+    console.log(gradient(TAILWIND_COLORS)(`➤ TailwindCSS: v${tailwindVersion}\n`));
+
+    await createAngularProject(projectName, angularVersion);
+    await installTailwind(projectName, tailwindVersion);
 
     rl.close();
-    console.log(chalk.greenBright.bold('\n🎉 Project setup complete! Happy coding! 🚀\n'));
-    console.log(chalk.greenBright.bold(`\nRun:\n\tcd ${projectName}\n\tng serve\n`));
+    console.log(gradient(SYSTEM_COLORS)('\nProject setup complete!\n'));
+    console.log(gradient(SYSTEM_COLORS)(`To get started:\n  cd ${projectName}\n  ng serve\n`));
   } catch (error) {
     errorMessage(`Something went wrong: ${error.message}`);
     rl.close();

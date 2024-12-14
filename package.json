@@ -1,7 +1,7 @@
 {
   "name": "create-angular-tailwindcss",
   "version": "1.0.0",
-  "description": "This CLI tool helps you create a new Angular project with TailwindCSS seamlessly set up, so you can focus on building amazing apps without manual configuration.",
+  "description": "CLI tool to create Angular projects with TailwindCSS, supporting multiple versions",
   "bin": {
     "create-angular-tailwindcss": "index.js"
   },
@@ -15,15 +15,16 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Duhsten/create-tailwindcss-angular.git"
+    "url": "https://github.com/Duhsten/create-angular-tailwindcss.git"
   },
-  "homepage": "https://github.com/serverless/serverless#readme",
+  "homepage": "https://github.com/Duhsten/create-angular-tailwindcss#readme",
   "type": "module",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "child_process": "^1.0.2",
     "cross-spawn": "^7.0.6",
+    "gradient-string": "^3.0.0",
     "ora": "^8.1.1"
   }
 }
